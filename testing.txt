@@ -1,0 +1,49 @@
+Testing Setup Steps
+
+1. Create multiple tenants as many required by running
+    python manage.py create_tenant
+
+2. Create tenant superuser for each tenant by running
+    python manage.py create_tenant_superuser
+
+3. Run server
+    python manage.py runserver
+
+
+Testing Steps
+
+Let's consider we have created 3 tenants and tenant superuser to each tenant
+1. public (required) -> domain : localhost
+2. Company ABC -> domain : abc.localhost
+3. Company XYZ -> domain : xyz.localhost
+
+___________________________________________________________________________
+
+Step 1:
+
+Go to admin portal of Company ABC by visiting following url and login with superuser credentials created for Company ABC
+
+    url : http://abc.localhost:8000/admin/
+
+Step 2:
+
+a. Create Profile object which represents author of an article
+b. Create Article by assigning above created author to article in Admin UI
+
+Step 3:
+
+Observe the newly created article is listed in Articles section of Admin UI.
+___________________________________________________________________________
+
+
+Repeat the above steps for Company XYZ tenant as well by visiting following url
+
+    url : http://xyz.localhost:8000/admin/
+
+
+Observation
+
+Now observe the article created by Customer ABC tenant is not listed under Customer XYZ admin portal and similarly
+article created by Customer XYZ tenant is not listed under Customer ABC admin portal.
+
+Observe the DB as well, multiple schemas will be created under same DB and articles are stored in respective schemas.
